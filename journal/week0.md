@@ -43,3 +43,9 @@ https://lucid.app/lucidchart/67c72fc0-bed0-4e69-9ba3-b6235586a5e2/edit?viewport_
 I have researched service quota of EC2 elastic IP, by default availabe IPs are 5 IP addresses, that might affect service felixbility if more than 5 are needed.
 
 <img width="1416" alt="image" src="https://user-images.githubusercontent.com/110344576/221178666-39a48ce4-7713-4b52-9c73-9e06a57db337.png">
+
+Submitted quota increase request to increase number of elastic IP per EC2 to 7.
+
+<img width="1394" alt="image" src="https://user-images.githubusercontent.com/110344576/221179283-d552bb2e-0934-4168-adb9-40ebc2571b65.png">
+
+<img width="1416" alt="image" src="https://user-images.githubusercontent.com/110344576/221178666-39a48ce4-7713-4b52-9c73-9e06a57db337.png">
