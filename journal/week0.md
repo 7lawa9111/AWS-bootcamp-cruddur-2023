@@ -48,4 +48,4 @@ Submitted quota increase request to increase number of elastic IP per EC2 to 7.
 
 <img width="1394" alt="image" src="https://user-images.githubusercontent.com/110344576/221179283-d552bb2e-0934-4168-adb9-40ebc2571b65.png">
 
-<img width="1416" alt="image" src="https://user-images.githubusercontent.com/110344576/221178666-39a48ce4-7713-4b52-9c73-9e06a57db337.png">
+
