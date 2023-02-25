@@ -10,3 +10,20 @@ Coded the python command to run flask in shell script and then call it within th
 
 
 <img width="840" alt="image" src="https://user-images.githubusercontent.com/110344576/221351510-4954e9c9-54a4-4a83-905d-b285b694b4c8.png">
+
+Push and tag a image to DockerHub
+
+logged in to my Docker account:
+
+<img width="917" alt="image" src="https://user-images.githubusercontent.com/110344576/221352004-1dd00c08-18bf-48e6-a7ac-8f506b079369.png">
+
+Pushed tagged image to my Dockerhub repo:
+
+<img width="868" alt="image" src="https://user-images.githubusercontent.com/110344576/221352292-f4cfe274-0e83-455b-afe7-22fcd003486f.png">
+
+<img width="951" alt="image" src="https://user-images.githubusercontent.com/110344576/221352324-53fd7c66-58d4-43be-bf69-ebdcace57610.png">
+
+
+Installed Docker desktop on my machine and pulled backend-flask image from my repo:
+
+<img width="1268" alt="image" src="https://user-images.githubusercontent.com/110344576/221352457-61bbd07b-1e1d-4b37-8435-8b3a92f0423d.png">
