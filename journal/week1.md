@@ -31,3 +31,8 @@ Installed Docker desktop on my machine and pulled backend-flask image from my re
 Container is running locally:
 
 <img width="1268" alt="image" src="https://user-images.githubusercontent.com/110344576/221352747-f1057910-2508-46ae-a9e1-32e469a2ef38.png">
+
+
+Launched an EC2 instance and installed docker on it and ran an image of backend-flask:
+
+<img width="1426" alt="image" src="https://user-images.githubusercontent.com/110344576/221363224-5fe400f5-61d7-4138-ae8c-b535cf6bea57.png">
