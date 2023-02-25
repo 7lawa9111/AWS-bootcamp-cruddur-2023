@@ -23,6 +23,12 @@ Pushed tagged image to my Dockerhub repo:
 
 <img width="951" alt="image" src="https://user-images.githubusercontent.com/110344576/221352324-53fd7c66-58d4-43be-bf69-ebdcace57610.png">
 
+Best Practices for writing Dockerfiles:
+
+Use a .dockerignore file
+Containers should be immutable & ephemeral
+Minimize the number of layers / Consolidate instructions
+Avoid installing unnecessary packages
 
 Installed Docker desktop on my machine and pulled backend-flask image from my repo:
 
