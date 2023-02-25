@@ -27,3 +27,7 @@ Pushed tagged image to my Dockerhub repo:
 Installed Docker desktop on my machine and pulled backend-flask image from my repo:
 
 <img width="1268" alt="image" src="https://user-images.githubusercontent.com/110344576/221352457-61bbd07b-1e1d-4b37-8435-8b3a92f0423d.png">
+
+Container is running locally:
+
+<img width="1268" alt="image" src="https://user-images.githubusercontent.com/110344576/221352747-f1057910-2508-46ae-a9e1-32e469a2ef38.png">
