@@ -1,7 +1,8 @@
-import './tracing.js'
+import './tracing.js';
 import './HomeFeedPage.css';
 import React from "react";
 
+import { trace, context, } from '@opentelemetry/api';
 import DesktopNavigation  from '../components/DesktopNavigation';
 import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
@@ -52,23 +53,17 @@ export default function HomeFeedPage() {
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
-    const tracer = trace.getTracer();
-    const rootSpan = tracer.startActiveSpan('document_load', span => {
-      //start span when navigating to page
-      span.setAttribute('pageUrlwindow', window.location.href);
-      window.onload = (event) => {
-        // ... do loading things
-        // ... attach timing information
-        span.end(); //once page is loaded, end the span
-      };
-    
-    });
-
-    loadData();
-    checkAuth();
-  }, [])
-
-    
+  const tracer = trace.getTracer();
+  const rootSpan = tracer.startActiveSpan('document_load', span => {
+    //start span when navigating to page
+    span.setAttribute('pageUrlwindow', window.location.href);
+    window.onload = (event) => {
+      // ... do loading things
+      // ... attach timing information
+      span.end(); //once page is loaded, end the span
+    };
+  
+  });
 
     loadData();
     checkAuth();
