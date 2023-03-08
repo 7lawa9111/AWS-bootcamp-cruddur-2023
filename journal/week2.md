@@ -1,6 +1,7 @@
 # Week 2 — Distributed Tracing
 
-##Observability Security Considerations
+## Observability Security Considerations
+
 After watching Ashish's video of Security consideration in observability, Here are some security considerations to keep in mind when implementing observability:
 
 Data privacy: Make sure that sensitive data is not exposed through your observability infrastructure.
