@@ -19,3 +19,9 @@ Secure coding practices: Follow secure coding practices when developing your ins
 Incident response: Have an incident response plan in place in case of a security breach.
 
 By keeping these security considerations in mind, you can help ensure that your observability infrastructure is both effective and secure.
+
+
+## Add custom instrumentation to Honeycomb to add UserId
+
+<img width="1285" alt="image" src="https://user-images.githubusercontent.com/110344576/223659558-74e4c8d2-b326-45b6-b75a-3e530b2ee3e0.png">
+
