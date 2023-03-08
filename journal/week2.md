@@ -60,3 +60,11 @@ class UserActivities:
 ## Run custom queries in Honeycomb
 
 <img width="1285" alt="image" src="https://user-images.githubusercontent.com/110344576/223663203-d27d73c2-6f36-4be0-aca3-618ef8090783.png">
+
+## Configure XRAY on Python
+
+<img width="1382" alt="image" src="https://user-images.githubusercontent.com/110344576/223705340-0c025507-8a14-44d2-87d6-27ea27409dac.png">
+
+<img width="1392" alt="image" src="https://user-images.githubusercontent.com/110344576/223705446-43ae7437-605a-40bc-8722-a766b3d1c699.png">
+
+
