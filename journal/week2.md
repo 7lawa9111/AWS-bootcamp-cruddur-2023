@@ -57,3 +57,6 @@ class UserActivities:
         span.set_attribute("app.result_length", len(results))
         return model
 ```
+## Run custom queries in Honeycomb
+
+<img width="1285" alt="image" src="https://user-images.githubusercontent.com/110344576/223663203-d27d73c2-6f36-4be0-aca3-618ef8090783.png">
