@@ -1,4 +1,4 @@
-import './tracing.js';
+import '../services/tracing.js';
 import './HomeFeedPage.css';
 import React from "react";
 
