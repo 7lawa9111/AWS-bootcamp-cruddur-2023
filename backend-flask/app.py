@@ -34,6 +34,22 @@ provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
 tracer = trace.get_tracer(__name__)
 
+app = Flask(__name__)
+
+# Initialize automatic instrumentation with Flask
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+frontend = os.getenv('FRONTEND_URL')
+backend = os.getenv('BACKEND_URL')
+origins = [frontend, backend]
+cors = CORS(
+  app, 
+  resources={r"/api/*": {"origins": origins}},
+  expose_headers="location,link",
+  allow_headers="content-type,if-modified-since",
+  methods="OPTIONS,GET,HEAD,POST"
+)
+
 # Rollbar ------
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
 @app.before_first_request
@@ -52,22 +68,7 @@ def init_rollbar():
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
-app = Flask(__name__)
-
-# Initialize automatic instrumentation with Flask
-FlaskInstrumentor().instrument_app(app)
-RequestsInstrumentor().instrument()
-frontend = os.getenv('FRONTEND_URL')
-backend = os.getenv('BACKEND_URL')
-origins = [frontend, backend]
-cors = CORS(
-  app, 
-  resources={r"/api/*": {"origins": origins}},
-  expose_headers="location,link",
-  allow_headers="content-type,if-modified-since",
-  methods="OPTIONS,GET,HEAD,POST"
-)
-
+# function to test rollbar ---
 @app.route('/rollbar/test')
 def rollbar_test():
     rollbar.report_message('Hello World!', 'warning')
