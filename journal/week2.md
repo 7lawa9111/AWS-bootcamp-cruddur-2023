@@ -67,4 +67,11 @@ class UserActivities:
 
 <img width="1392" alt="image" src="https://user-images.githubusercontent.com/110344576/223705446-43ae7437-605a-40bc-8722-a766b3d1c699.png">
 
+## Configure Rollbar on Python
+
+<img width="1434" alt="image" src="https://user-images.githubusercontent.com/110344576/224514264-1ed8e7fa-8a12-43b3-b836-9c680e25a015.png">
+
+
+
+
 
