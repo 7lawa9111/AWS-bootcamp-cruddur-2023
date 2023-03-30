@@ -22,6 +22,7 @@ my_user_uuid = "bdebed5d-3e86-4c64-a341-448e3320b51c"
 query_params = {
   'TableName': table_name,
   'KeyConditionExpression': 'pk = :pkey',
+  'ScanIndexForward': False,
   'ExpressionAttributeValues': {
     ':pkey': {'S': f"GRP#{my_user_uuid}"}
   },
