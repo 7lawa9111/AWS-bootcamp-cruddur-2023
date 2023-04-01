@@ -6,7 +6,6 @@ from jose.utils import base64url_decode
 
 class FlaskAWSCognitoError(Exception):
   pass
-
 class TokenVerifyError(Exception):
   pass
 
@@ -15,9 +14,9 @@ def extract_access_token(request_headers):
     auth_header = request_headers.get("Authorization")
     if auth_header and " " in auth_header:
         _, access_token = auth_header.split()
-    return access_token
+    return access_token    
 
-class CognitoJwtToken:
+class CognitoToken:
     def __init__(self, user_pool_id, user_pool_client_id, region, request_client=None):
         self.region = region
         if not self.region:
@@ -30,7 +29,6 @@ class CognitoJwtToken:
         else:
             self.request_client = request_client
         self._load_jwk_keys()
-
 
     def _load_jwk_keys(self):
         keys_url = f"https://cognito-idp.{self.region}.amazonaws.com/{self.user_pool_id}/.well-known/jwks.json"
@@ -94,6 +92,7 @@ class CognitoJwtToken:
     def _check_audience(self, claims):
         # and the Audience  (use claims['client_id'] if verifying an access token)
         audience = claims["aud"] if "aud" in claims else claims["client_id"]
+        print('@@@@@@@')
         if audience != self.user_pool_client_id:
             raise TokenVerifyError("Token was not issued for this audience")
 
@@ -110,5 +109,5 @@ class CognitoJwtToken:
         self._check_expiration(claims, current_time)
         self._check_audience(claims)
 
-        self.claims = claims 
+        self.claims = claims
         return claims

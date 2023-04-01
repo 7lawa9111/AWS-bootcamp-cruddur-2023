@@ -1,6 +1,7 @@
 import './HomeFeedPage.css';
 import React from "react";
 
+
 import DesktopNavigation  from '../components/DesktopNavigation';
 import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
@@ -41,7 +42,7 @@ export default function HomeFeedPage() {
 // check when the page loads if we are authenicated
 React.useEffect(()=>{
   loadData();
-  checkAuth();
+  checkAuth(setUser);
 }, [])
 
   React.useEffect(()=>{
@@ -50,7 +51,7 @@ React.useEffect(()=>{
     dataFetchedRef.current = true;
 
     loadData();
-    checkAuth(setUser);
+    checkAuth();
   }, [])
 
   return (

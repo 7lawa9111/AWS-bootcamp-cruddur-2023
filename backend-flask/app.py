@@ -14,7 +14,7 @@ from services.create_message import *
 from services.show_activity import *
 from services.users_short import *
 
-from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
+from lib.cognito_token import CognitoJwtToken, extract_access_token, TokenVerifyError
 
 # Honeycomp
 
@@ -48,8 +48,8 @@ origins = [frontend, backend]
 cors = CORS(
   app, 
   resources={r"/api/*": {"origins": origins}},
-  expose_headers="location,link",
-  allow_headers="content-type,if-modified-since",
+  headers=['Content-Type', 'Authorization'], 
+  expose_headers='Authorization',
   methods="OPTIONS,GET,HEAD,POST"
 )
 
@@ -81,39 +81,42 @@ def rollbar_test():
 def data_message_groups():
   access_token = extract_access_token(request.headers)
   try:
-    claims = cognito_jwt_token.verify(access_token)
-    cognito_user_id = claims['sub']
+    claims = cognito_token.verify(access_token)
+    # authenticated request
+    app.logger.debug("authenticated")
+    app.logger.debug(claims)
+    cognito_user_id = claims ['sub']
     model = MessageGroups.run(cognito_user_id=cognito_user_id)
     if model['errors'] is not None:
       return model['errors'], 422
     else:
       return model['data'], 200
-
   except TokenVerifyError as e:
+    # unauthenticated request
     app.logger.debug(e)
-    return {}, 401
+    return{}, 401
 
 @app.route("/api/messages/<string:message_group_uuid>", methods=['GET'])
 def data_messages(message_group_uuid):
-  user_sender_handle = 'andrewbrown'
-  user_receiver_handle = request.args.get('user_reciever_handle')
-
   access_token = extract_access_token(request.headers)
   try:
-    claims = cognito_jwt_token.verify(access_token)
-    cognito_user_id = claims['sub']
+    claims = cognito_token.verify(access_token)
+    # authenticated request
+    app.logger.debug("authenticated")
+    app.logger.debug(claims)
+    cognito_user_id = claims ['sub']
     model = Messages.run(
-      message_group_uuid=message_group_uuid,
-      cognito_user_id=cognito_user_id
+        cognito_user_id=cognito_user_id,
+        message_group_uuid=message_group_uuid
     )
     if model['errors'] is not None:
       return model['errors'], 422
     else:
       return model['data'], 200
-    return
   except TokenVerifyError as e:
+    # unauthenticated request
     app.logger.debug(e)
-    return {}, 401
+    return{}, 401
 
 @app.route("/api/messages", methods=['POST','OPTIONS'])
 @cross_origin()
@@ -161,16 +164,16 @@ def data_create_message():
 def data_home():
   access_token = extract_access_token(request.headers)
   try:
-    claims = cognito_jwt_token.verify(access_token)
-    # authenicatied request
-    app.logger.debug("authenicated")
+    claims = cognito_token.verify(access_token)
+    # authenticated request
+    app.logger.debug("authenticated")
     app.logger.debug(claims)
     app.logger.debug(claims['username'])
     data = HomeActivities.run(cognito_user_id=claims['username'])
   except TokenVerifyError as e:
-    # unauthenicatied request
+    # unauthenticated request
     app.logger.debug(e)
-    app.logger.debug("unauthenicated")
+    app.logger.debug("unauthenticated")
     data = HomeActivities.run()
   return data, 200
   

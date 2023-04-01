@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 // [TODO] Authenication
 import { Auth } from 'aws-amplify';
 
+ 
+
 export default function SigninPage() {
 
   const [email, setEmail] = React.useState('');
@@ -16,23 +18,22 @@ export default function SigninPage() {
   const onsubmit = async (event) => {
     setErrors('')
     event.preventDefault();
-      Auth.signIn(email, password)
-      .then(user => {
-          localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
-          window.location.href = "/"
-      })    
-      .catch(error => { 
-        if (error.code == 'UserNotConfirmedException') {
-          window.location.href = "/confirm"
-        }
-        setErrors(error.message)
-    });
+    Auth.signIn(email, password)
+    .then(user => {
+      console.log('user',user)
+      localStorage.setItem("access_token", user.signInUserSession.accessToken.jwtToken)
+      // Store email in local storage to use it in confirmation & sign-in page
+      localStorage.setItem('email', email); 
+      window.location.href = "/"
+    })
+    .catch(error => {
+      if (error.code == 'UserNotConfirmedException') {
+        window.location.href = "/confirm"
+      }
+      setErrors(error.message)
+      });
     return false
   }
-  
-  
-  // just before submit component
-  {errors}
 
   const email_onchange = (event) => {
     setEmail(event.target.value);
@@ -45,6 +46,15 @@ export default function SigninPage() {
   if (errors){
     el_errors = <div className='errors'>{errors}</div>;
   }
+
+  React.useEffect(() => {
+    const storedEmail = localStorage.getItem('email');
+    if (storedEmail) {
+      setEmail(storedEmail);
+  // Remove the email from local storage because we're done with it.
+      localStorage.removeItem('email'); 
+    }
+  }, []);
 
   return (
     <article className="signin-article">
