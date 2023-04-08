@@ -41,8 +41,8 @@ tracer = trace.get_tracer(__name__)
 app = Flask(__name__)
 
 cognito_token = CognitoToken(
-    user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"),
-    user_pool_client_id="1t285arkjkkfpsgbimss8g7hu5",
+    user_pool_id="us-east-1_lvxXX6Zns",
+    user_pool_client_id="1enorr7l4aae5g8raf9bfpghrd",
     region=os.getenv("AWS_DEFAULT_REGION")
 )
 
