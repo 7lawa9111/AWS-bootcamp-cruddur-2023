@@ -10,3 +10,7 @@
 cd front-react-js 
 npm i aws-amplyfy --save
 ```
+
+## Implementation of the sign in page
+
+
