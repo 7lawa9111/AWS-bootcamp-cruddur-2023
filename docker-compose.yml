@@ -14,7 +14,7 @@ services:
       OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
       OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
       ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
-      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"
+      #AWS_ENDPOINT_URL: "http://dynamodb-local:8000"
       AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
       AWS_COGNITO_USER_POOL_ID: "us-east-1_lvxXX6Zns"
       AWS_COGNITO_USER_POOL_CLIENT_ID: "1enorr7l4aae5g8raf9bfpghrd"

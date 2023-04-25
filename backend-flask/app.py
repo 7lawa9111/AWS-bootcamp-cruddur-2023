@@ -144,7 +144,7 @@ def data_create_message():
         message = request.json['message']
 
         message_group_uuid = request.json.get('message_group_uuid', None)
-        user_receiver_handle = request.json.get('user_receiver_handle', None)
+        user_receiver_handle = request.json.get('handle', None)
 
         if message_group_uuid == None:
             # Create for the first time
