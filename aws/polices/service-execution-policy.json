@@ -1,11 +1,11 @@
 {
-    "Version":"2012-10-17",
-    "Statement":[{
-      "Effect": "Allow",
-      "Action": [
-        "ssm:GetParameters",
-        "ssm:GetParameter"
-      ],
-      "Resource": "arn:aws:ssm:us-east-1:238967891447:parameter/cruddur/backend-flask/*"
-    }]
-  }
+  "Version":"2012-10-17",
+  "Statement":[{
+    "Effect": "Allow",
+    "Action": [
+      "ssm:GetParameters",
+      "ssm:GetParameter"
+    ],
+    "Resource": "arn:aws:ssm:us-east-1:470836252788:parameter/cruddur/backend-flask/*"
+  }]
+}
