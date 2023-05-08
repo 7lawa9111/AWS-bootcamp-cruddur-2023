@@ -44,8 +44,8 @@
           {"name": "OTEL_EXPORTER_OTLP_ENDPOINT", "value": "https://api.honeycomb.io"},
           {"name": "AWS_COGNITO_USER_POOL_ID", "value": "us-east-1_lvxXX6Zns"},
           {"name": "AWS_COGNITO_USER_POOL_CLIENT_ID", "value": "1enorr7l4aae5g8raf9bfpghrd"},
-          {"name": "FRONTEND_URL", "value": "*"},
-          {"name": "BACKEND_URL", "value": "*"},
+          {"name": "FRONTEND_URL", "value": "https://7lawa911.com"},
+          {"name": "BACKEND_URL", "value": "https://api.7lawa911.com"},
           {"name": "AWS_DEFAULT_REGION", "value": "us-east-1"}
         ],
         "secrets": [
