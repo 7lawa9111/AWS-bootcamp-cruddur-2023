@@ -1,22 +1,17 @@
-import './NotificationsFeedPage.css';
+import './NotificationFeedPage.css';
 import React from "react";
-import { trace, context, SpanStatusCode, } from '@opentelemetry/api';
-
 
 import DesktopNavigation  from '../components/DesktopNavigation';
 import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
 import ActivityForm from '../components/ActivityForm';
 import ReplyForm from '../components/ReplyForm';
-
-import '../services/tracing'
+import { checkAuth } from '../lib/CheckAuth';
 
 // [TODO] Authenication
 import Cookies from 'js-cookie'
 
-const tracer = trace.getTracer('notification-request.tracer');
-
-export default function NotificationsFeedPage() {
+export default function NotificationFeedPage() {
   const [activities, setActivities] = React.useState([]);
   const [popped, setPopped] = React.useState(false);
   const [poppedReply, setPoppedReply] = React.useState(false);
@@ -25,50 +20,20 @@ export default function NotificationsFeedPage() {
   const dataFetchedRef = React.useRef(false);
 
   const loadData = async () => {
-    const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/notifications`
-
-    // Setup new span for notification service
-    return tracer.startActiveSpan(`Notification Request: Get ${backend_url}`, async (span) => {
-
-      // construct W3C traceparent header
-      const traceparent = `00-${span.spanContext().traceId}-${span.spanContext().spanId}-01`;
-
-      try {
-        const res = await fetch(backend_url, {
-          method: "GET",
-          traceparent: traceparent,
-        });
-
-        // Set Span Attributes for http request
-        span.setAttributes({
-          'http.method': 'GET',
-          'http.url': backend_url,
-          'response.status_code': res.status,
-        });
-
-        let resJson = await res.json();
-        if (res.status === 200) {
-
-          // Set Span status for request status code
-          span.setStatus({ code: SpanStatusCode.OK });
-          setActivities(resJson)
-        } else {
-          console.log(res)
-        }
-      } catch (err) {
-        console.log(err);
-        // Set Span for any error message
-        span.setStatus({
-          code: SpanStatusCode.ERROR,
-          message: err.message,
-        });
-        throw err;
-      } finally {
-
-        // finally end the span
-        span.end();
+    try {
+      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/notifications`
+      const res = await fetch(backend_url, {
+        method: "GET"
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        setActivities(resJson)
+      } else {
+        console.log(res)
       }
-    });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const checkAuth = async () => {
@@ -93,7 +58,7 @@ export default function NotificationsFeedPage() {
 
   return (
     <article>
-      <DesktopNavigation user={user} active={'notifications'} setPopped={setPopped} />
+      <DesktopNavigation user={user} active={'notification'} setPopped={setPopped} />
       <div className='content'>
         <ActivityForm  
           popped={popped}
@@ -108,7 +73,7 @@ export default function NotificationsFeedPage() {
           activities={activities} 
         />
         <ActivityFeed 
-          title="Notifications" 
+          title="Notification" 
           setReplyActivity={setReplyActivity} 
           setPopped={setPoppedReply} 
           activities={activities} 
