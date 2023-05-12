@@ -28,4 +28,4 @@ export async function checkAuth(setUser){
       localStorage.setItem("access_token", cognito_user_session.accessToken.jwtToken)
   })
   .catch((err) => console.log(err));
-}
+};
