@@ -47,10 +47,9 @@ tasks:
       cp .env.example .env
       npm i
       npm install aws-cdk -g
-
   - name: sharp and clients3
     command: |
-      cd aws/lambdas/process-images
+      cd 
       npm i sharp
       npm i @aws-sdk/client-s3
 
