@@ -22,6 +22,8 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     const functionPath: string = process.env.THUMBING_FUNCTION_PATH as string;
     const folderInput: string = process.env.THUMBING_S3_FOLDER_INPUT as string;
     const folderOutput: string = process.env.THUMBING_S3_FOLDER_OUTPUT as string;
+    const webhookUrl: string = process.env.THUMBING_WEBHOOK_URL as string;
+    const topicName: string = process.env.THUMBING_TOPIC_NAME as string;
 
 
     const bucket = this.importBucket(bucketName);
@@ -37,10 +39,6 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
   this.createS3NotifyToSns(folderOutput,snsTopic,bucket);
   
 
-  
-
-  //add our s3 event notification
-  this.createS3NotifyToLambda(folderInput,lambda,bucket);
 
       //create policies
   const s3ReadWritePolicy = this.createPolicyBucketAccess(bucket.bucketArn);

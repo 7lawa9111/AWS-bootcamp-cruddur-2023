@@ -17,7 +17,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/44255991d7bde723ae6072a0dca845e9f24f262b461fece1f481746c2f9d1e23.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe9eee85f02af3335bf6fc3d21b8f0ccce1d2b0197df83d4c5ac365a9d1132ea.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -51,10 +51,34 @@
             "data": "ThumbLambdaServiceRole4BE4E3E0"
           }
         ],
+        "/ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThumbLambdaServiceRoleDefaultPolicyB74653D4"
+          }
+        ],
         "/ThumbingServerlessCdkStack/ThumbLambda/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ThumbLambda5C775138"
+          }
+        ],
+        "/ThumbingServerlessCdkStack/ThumbingTopic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThumbingTopic6D1C97CE"
+          }
+        ],
+        "/ThumbingServerlessCdkStack/ThumbingTopic/https:----api.7lawa911.com--webhooks--avatar/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThumbingTopichttpsapi7lawa911comwebhooksavatarA78DA9C7"
+          }
+        ],
+        "/ThumbingServerlessCdkStack/ThumbingTopic/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThumbingTopicPolicy9FC24222"
           }
         ],
         "/ThumbingServerlessCdkStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [

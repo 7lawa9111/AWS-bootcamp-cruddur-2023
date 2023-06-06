@@ -33,12 +33,35 @@
         ]
        }
       }
+     ],
+     "TopicConfigurations": [
+      {
+       "Events": [
+        "s3:ObjectCreated:Put"
+       ],
+       "Filter": {
+        "Key": {
+         "FilterRules": [
+          {
+           "Name": "prefix",
+           "Value": "avatars/processed"
+          }
+         ]
+        }
+       },
+       "TopicArn": {
+        "Ref": "ThumbingTopic6D1C97CE"
+       }
+      }
      ]
     },
     "Managed": false
    },
    "DependsOn": [
-    "AssetsBucketAllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C32211236"
+    "AssetsBucketAllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C32211236",
+    "ThumbingTopichttpsapi7lawa911comwebhooksavatarA78DA9C7",
+    "ThumbingTopicPolicy9FC24222",
+    "ThumbingTopic6D1C97CE"
    ],
    "Metadata": {
     "aws:cdk:path": "ThumbingServerlessCdkStack/AssetsBucket/Notifications/Resource"
@@ -109,6 +132,44 @@
     "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/Resource"
    }
   },
+  "ThumbLambdaServiceRoleDefaultPolicyB74653D4": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":s3:::assets.7lawa911.com/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ThumbLambdaServiceRoleDefaultPolicyB74653D4",
+    "Roles": [
+     {
+      "Ref": "ThumbLambdaServiceRole4BE4E3E0"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
   "ThumbLambda5C775138": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
@@ -137,6 +198,7 @@
     "Runtime": "nodejs18.x"
    },
    "DependsOn": [
+    "ThumbLambdaServiceRoleDefaultPolicyB74653D4",
     "ThumbLambdaServiceRole4BE4E3E0"
    ],
    "Metadata": {
@@ -144,6 +206,73 @@
     "aws:asset:path": "asset.c78001c358b771e4856ded31a6d9c43da454e5b64c9fa9d75cc6fb74e4e5b172",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
+   }
+  },
+  "ThumbingTopic6D1C97CE": {
+   "Type": "AWS::SNS::Topic",
+   "Properties": {
+    "TopicName": "crudduer-assets"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbingTopic/Resource"
+   }
+  },
+  "ThumbingTopichttpsapi7lawa911comwebhooksavatarA78DA9C7": {
+   "Type": "AWS::SNS::Subscription",
+   "Properties": {
+    "Protocol": "https",
+    "TopicArn": {
+     "Ref": "ThumbingTopic6D1C97CE"
+    },
+    "Endpoint": "https://api.7lawa911.com/webhooks/avatar"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbingTopic/https:----api.7lawa911.com--webhooks--avatar/Resource"
+   }
+  },
+  "ThumbingTopicPolicy9FC24222": {
+   "Type": "AWS::SNS::TopicPolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sns:Publish",
+       "Condition": {
+        "ArnLike": {
+         "aws:SourceArn": {
+          "Fn::Join": [
+           "",
+           [
+            "arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":s3:::assets.7lawa911.com"
+           ]
+          ]
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "s3.amazonaws.com"
+       },
+       "Resource": {
+        "Ref": "ThumbingTopic6D1C97CE"
+       },
+       "Sid": "0"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Topics": [
+     {
+      "Ref": "ThumbingTopic6D1C97CE"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbingTopic/Policy/Resource"
    }
   },
   "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC": {
@@ -235,7 +364,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/z2PwQqDMBBEv6X3uK0KxWsVehb7ARKTrazGBNykpYj/XqO0p3k7O7CzGRQZXE7yzYnSY2Kog+XhpRrFZrUL51AGNaIvJaMwcuq0hKV62hrniZjJWXEPVvkIm/3jVZCcYGmcwWjvWjtD6hPHg1bBeSuZ0TPcoqx7FNmFWaH4w77bOvVk+5ionNV0HLFOIwx8fqUFpNftj4GJkjlYTxNCc+gXTV/GcuMAAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQSw+CMBCEf4v3sj5IDFc18UzEOyllNSu0JWyrMQ3/XQrxdZpvJpNO2w1kG1gt5IMTVTdJSxWEwknViDEqA6ew96pBt5eMopW6qiWEw8Xk2GtiJmvE0RvlIozxmwdBUkM42RZjPGluW1LPaGcaBKelZEbHsIsi2DCEs+1IxdYMha9Y9dS9F/78VPme+2OHYdpFtr5XKD4wDY0PvJK5xsbBmprmGxtbI9x4eV9nsN6On3JjoqT3xpFGOM36AmmzgKQwAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "ThumbingServerlessCdkStack/CDKMetadata/Default"
