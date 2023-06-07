@@ -8,6 +8,78 @@
         "id": "ThumbingServerlessCdkStack",
         "path": "ThumbingServerlessCdkStack",
         "children": {
+          "UploadsBucket": {
+            "id": "UploadsBucket",
+            "path": "ThumbingServerlessCdkStack/UploadsBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ThumbingServerlessCdkStack/UploadsBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketName": "7lawa911-uploaded-avatars"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.82.0"
+                }
+              },
+              "Notifications": {
+                "id": "Notifications",
+                "path": "ThumbingServerlessCdkStack/UploadsBucket/Notifications",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ThumbingServerlessCdkStack/UploadsBucket/Notifications/Resource",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.82.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.2.41"
+                }
+              },
+              "AllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE47": {
+                "id": "AllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE47",
+                "path": "ThumbingServerlessCdkStack/UploadsBucket/AllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE47",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                  "aws:cdk:cloudformation:props": {
+                    "action": "lambda:InvokeFunction",
+                    "functionName": {
+                      "Fn::GetAtt": [
+                        "thumbLambda4F6A0672",
+                        "Arn"
+                      ]
+                    },
+                    "principal": "s3.amazonaws.com",
+                    "sourceAccount": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "sourceArn": {
+                      "Fn::GetAtt": [
+                        "UploadsBucket5E5E9B64",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                  "version": "2.82.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.82.0"
+            }
+          },
           "AssetsBucket": {
             "id": "AssetsBucket",
             "path": "ThumbingServerlessCdkStack/AssetsBucket",
@@ -29,42 +101,6 @@
                   "fqn": "constructs.Construct",
                   "version": "10.2.41"
                 }
-              },
-              "AllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C": {
-                "id": "AllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C",
-                "path": "ThumbingServerlessCdkStack/AssetsBucket/AllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
-                  "aws:cdk:cloudformation:props": {
-                    "action": "lambda:InvokeFunction",
-                    "functionName": {
-                      "Fn::GetAtt": [
-                        "ThumbLambda5C775138",
-                        "Arn"
-                      ]
-                    },
-                    "principal": "s3.amazonaws.com",
-                    "sourceAccount": {
-                      "Ref": "AWS::AccountId"
-                    },
-                    "sourceArn": {
-                      "Fn::Join": [
-                        "",
-                        [
-                          "arn:",
-                          {
-                            "Ref": "AWS::Partition"
-                          },
-                          ":s3:::assets.7lawa911.com"
-                        ]
-                      ]
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
-                  "version": "2.82.0"
-                }
               }
             },
             "constructInfo": {
@@ -72,17 +108,17 @@
               "version": "2.82.0"
             }
           },
-          "ThumbLambda": {
-            "id": "ThumbLambda",
-            "path": "ThumbingServerlessCdkStack/ThumbLambda",
+          "thumbLambda": {
+            "id": "thumbLambda",
+            "path": "ThumbingServerlessCdkStack/thumbLambda",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole",
+                "path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole",
                 "children": {
                   "ImportServiceRole": {
                     "id": "ImportServiceRole",
-                    "path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/ImportServiceRole",
+                    "path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.82.0"
@@ -90,7 +126,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/Resource",
+                    "path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -129,11 +165,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/DefaultPolicy",
+                    "path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/DefaultPolicy/Resource",
+                        "path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -145,26 +181,42 @@
                                     "s3:PutObject"
                                   ],
                                   "Effect": "Allow",
-                                  "Resource": {
-                                    "Fn::Join": [
-                                      "",
-                                      [
-                                        "arn:",
-                                        {
-                                          "Ref": "AWS::Partition"
-                                        },
-                                        ":s3:::assets.7lawa911.com/*"
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":s3:::assets.7lawa911.com/*"
+                                        ]
                                       ]
-                                    ]
-                                  }
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "UploadsBucket5E5E9B64",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
                                 }
                               ],
                               "Version": "2012-10-17"
                             },
-                            "policyName": "ThumbLambdaServiceRoleDefaultPolicyB74653D4",
+                            "policyName": "thumbLambdaServiceRoleDefaultPolicyBCEB6E65",
                             "roles": [
                               {
-                                "Ref": "ThumbLambdaServiceRole4BE4E3E0"
+                                "Ref": "thumbLambdaServiceRole961849F1"
                               }
                             ]
                           }
@@ -188,11 +240,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "ThumbingServerlessCdkStack/ThumbLambda/Code",
+                "path": "ThumbingServerlessCdkStack/thumbLambda/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "ThumbingServerlessCdkStack/ThumbLambda/Code/Stage",
+                    "path": "ThumbingServerlessCdkStack/thumbLambda/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.82.0"
@@ -200,7 +252,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "ThumbingServerlessCdkStack/ThumbLambda/Code/AssetBucket",
+                    "path": "ThumbingServerlessCdkStack/thumbLambda/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.82.0"
@@ -214,7 +266,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "ThumbingServerlessCdkStack/ThumbLambda/Resource",
+                "path": "ThumbingServerlessCdkStack/thumbLambda/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -222,19 +274,19 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "c78001c358b771e4856ded31a6d9c43da454e5b64c9fa9d75cc6fb74e4e5b172.zip"
+                      "s3Key": "ebfc3451e2af9d4a66d73c8db84d8018ea0d372e332145336cd9b38466ca74ff.zip"
                     },
                     "role": {
                       "Fn::GetAtt": [
-                        "ThumbLambdaServiceRole4BE4E3E0",
+                        "thumbLambdaServiceRole961849F1",
                         "Arn"
                       ]
                     },
                     "environment": {
                       "variables": {
                         "DEST_BUCKET_NAME": "assets.7lawa911.com",
-                        "FOLDER_INPUT": "avatars/original",
-                        "FOLDER_OUTPUT": "avatars/processed",
+                        "FOLDER_INPUT": "",
+                        "FOLDER_OUTPUT": "avatars",
                         "PROCESS_WIDTH": "512",
                         "PROCESS_HEIGHT": "512"
                       }
@@ -264,7 +316,7 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
                   "aws:cdk:cloudformation:props": {
-                    "topicName": "crudduer-assets"
+                    "topicName": "7lawa911-assets"
                   }
                 },
                 "constructInfo": {

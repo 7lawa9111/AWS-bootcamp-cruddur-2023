@@ -17,7 +17,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe9eee85f02af3335bf6fc3d21b8f0ccce1d2b0197df83d4c5ac365a9d1132ea.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/b6f823c6272fc6d0d77324a45099995f97af73678d198eff6f6bdee570c345ce.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -33,34 +33,46 @@
         "ThumbingServerlessCdkStack.assets"
       ],
       "metadata": {
+        "/ThumbingServerlessCdkStack/UploadsBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UploadsBucket5E5E9B64"
+          }
+        ],
+        "/ThumbingServerlessCdkStack/UploadsBucket/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UploadsBucketNotifications4592A072"
+          }
+        ],
+        "/ThumbingServerlessCdkStack/UploadsBucket/AllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE47": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UploadsBucketAllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE4746FC7FD1"
+          }
+        ],
         "/ThumbingServerlessCdkStack/AssetsBucket/Notifications/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetsBucketNotificationsA137991F"
           }
         ],
-        "/ThumbingServerlessCdkStack/AssetsBucket/AllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C": [
+        "/ThumbingServerlessCdkStack/thumbLambda/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetsBucketAllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C32211236"
+            "data": "thumbLambdaServiceRole961849F1"
           }
         ],
-        "/ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/Resource": [
+        "/ThumbingServerlessCdkStack/thumbLambda/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "ThumbLambdaServiceRole4BE4E3E0"
+            "data": "thumbLambdaServiceRoleDefaultPolicyBCEB6E65"
           }
         ],
-        "/ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/DefaultPolicy/Resource": [
+        "/ThumbingServerlessCdkStack/thumbLambda/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "ThumbLambdaServiceRoleDefaultPolicyB74653D4"
-          }
-        ],
-        "/ThumbingServerlessCdkStack/ThumbLambda/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ThumbLambda5C775138"
+            "data": "thumbLambda4F6A0672"
           }
         ],
         "/ThumbingServerlessCdkStack/ThumbingTopic/Resource": [

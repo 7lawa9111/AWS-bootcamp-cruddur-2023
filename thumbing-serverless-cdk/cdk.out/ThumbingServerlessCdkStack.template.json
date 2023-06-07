@@ -1,5 +1,77 @@
 {
  "Resources": {
+  "UploadsBucket5E5E9B64": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketName": "7lawa911-uploaded-avatars"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/UploadsBucket/Resource"
+   }
+  },
+  "UploadsBucketNotifications4592A072": {
+   "Type": "Custom::S3BucketNotifications",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "UploadsBucket5E5E9B64"
+    },
+    "NotificationConfiguration": {
+     "LambdaFunctionConfigurations": [
+      {
+       "Events": [
+        "s3:ObjectCreated:Put"
+       ],
+       "LambdaFunctionArn": {
+        "Fn::GetAtt": [
+         "thumbLambda4F6A0672",
+         "Arn"
+        ]
+       }
+      }
+     ]
+    },
+    "Managed": true
+   },
+   "DependsOn": [
+    "UploadsBucketAllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE4746FC7FD1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/UploadsBucket/Notifications/Resource"
+   }
+  },
+  "UploadsBucketAllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE4746FC7FD1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "thumbLambda4F6A0672",
+      "Arn"
+     ]
+    },
+    "Principal": "s3.amazonaws.com",
+    "SourceAccount": {
+     "Ref": "AWS::AccountId"
+    },
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "UploadsBucket5E5E9B64",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ThumbingServerlessCdkStack/UploadsBucket/AllowBucketNotificationsToThumbingServerlessCdkStackthumbLambda1253FE47"
+   }
+  },
   "AssetsBucketNotificationsA137991F": {
    "Type": "Custom::S3BucketNotifications",
    "Properties": {
@@ -11,29 +83,6 @@
     },
     "BucketName": "assets.7lawa911.com",
     "NotificationConfiguration": {
-     "LambdaFunctionConfigurations": [
-      {
-       "Events": [
-        "s3:ObjectCreated:Put"
-       ],
-       "Filter": {
-        "Key": {
-         "FilterRules": [
-          {
-           "Name": "prefix",
-           "Value": "avatars/original"
-          }
-         ]
-        }
-       },
-       "LambdaFunctionArn": {
-        "Fn::GetAtt": [
-         "ThumbLambda5C775138",
-         "Arn"
-        ]
-       }
-      }
-     ],
      "TopicConfigurations": [
       {
        "Events": [
@@ -44,7 +93,7 @@
          "FilterRules": [
           {
            "Name": "prefix",
-           "Value": "avatars/processed"
+           "Value": "avatars"
           }
          ]
         }
@@ -58,7 +107,6 @@
     "Managed": false
    },
    "DependsOn": [
-    "AssetsBucketAllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C32211236",
     "ThumbingTopichttpsapi7lawa911comwebhooksavatarA78DA9C7",
     "ThumbingTopicPolicy9FC24222",
     "ThumbingTopic6D1C97CE"
@@ -67,38 +115,7 @@
     "aws:cdk:path": "ThumbingServerlessCdkStack/AssetsBucket/Notifications/Resource"
    }
   },
-  "AssetsBucketAllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C32211236": {
-   "Type": "AWS::Lambda::Permission",
-   "Properties": {
-    "Action": "lambda:InvokeFunction",
-    "FunctionName": {
-     "Fn::GetAtt": [
-      "ThumbLambda5C775138",
-      "Arn"
-     ]
-    },
-    "Principal": "s3.amazonaws.com",
-    "SourceAccount": {
-     "Ref": "AWS::AccountId"
-    },
-    "SourceArn": {
-     "Fn::Join": [
-      "",
-      [
-       "arn:",
-       {
-        "Ref": "AWS::Partition"
-       },
-       ":s3:::assets.7lawa911.com"
-      ]
-     ]
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ThumbingServerlessCdkStack/AssetsBucket/AllowBucketNotificationsToThumbingServerlessCdkStackThumbLambdaF947A79C"
-   }
-  },
-  "ThumbLambdaServiceRole4BE4E3E0": {
+  "thumbLambdaServiceRole961849F1": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -129,10 +146,10 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/Resource"
+    "aws:cdk:path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole/Resource"
    }
   },
-  "ThumbLambdaServiceRoleDefaultPolicyB74653D4": {
+  "thumbLambdaServiceRoleDefaultPolicyBCEB6E65": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -143,53 +160,69 @@
         "s3:PutObject"
        ],
        "Effect": "Allow",
-       "Resource": {
-        "Fn::Join": [
-         "",
-         [
-          "arn:",
-          {
-           "Ref": "AWS::Partition"
-          },
-          ":s3:::assets.7lawa911.com/*"
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::assets.7lawa911.com/*"
+          ]
          ]
-        ]
-       }
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "UploadsBucket5E5E9B64",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
       }
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "ThumbLambdaServiceRoleDefaultPolicyB74653D4",
+    "PolicyName": "thumbLambdaServiceRoleDefaultPolicyBCEB6E65",
     "Roles": [
      {
-      "Ref": "ThumbLambdaServiceRole4BE4E3E0"
+      "Ref": "thumbLambdaServiceRole961849F1"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbLambda/ServiceRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "ThumbingServerlessCdkStack/thumbLambda/ServiceRole/DefaultPolicy/Resource"
    }
   },
-  "ThumbLambda5C775138": {
+  "thumbLambda4F6A0672": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "c78001c358b771e4856ded31a6d9c43da454e5b64c9fa9d75cc6fb74e4e5b172.zip"
+     "S3Key": "ebfc3451e2af9d4a66d73c8db84d8018ea0d372e332145336cd9b38466ca74ff.zip"
     },
     "Role": {
      "Fn::GetAtt": [
-      "ThumbLambdaServiceRole4BE4E3E0",
+      "thumbLambdaServiceRole961849F1",
       "Arn"
      ]
     },
     "Environment": {
      "Variables": {
       "DEST_BUCKET_NAME": "assets.7lawa911.com",
-      "FOLDER_INPUT": "avatars/original",
-      "FOLDER_OUTPUT": "avatars/processed",
+      "FOLDER_INPUT": "",
+      "FOLDER_OUTPUT": "avatars",
       "PROCESS_WIDTH": "512",
       "PROCESS_HEIGHT": "512"
      }
@@ -198,12 +231,12 @@
     "Runtime": "nodejs18.x"
    },
    "DependsOn": [
-    "ThumbLambdaServiceRoleDefaultPolicyB74653D4",
-    "ThumbLambdaServiceRole4BE4E3E0"
+    "thumbLambdaServiceRoleDefaultPolicyBCEB6E65",
+    "thumbLambdaServiceRole961849F1"
    ],
    "Metadata": {
-    "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbLambda/Resource",
-    "aws:asset:path": "asset.c78001c358b771e4856ded31a6d9c43da454e5b64c9fa9d75cc6fb74e4e5b172",
+    "aws:cdk:path": "ThumbingServerlessCdkStack/thumbLambda/Resource",
+    "aws:asset:path": "asset.ebfc3451e2af9d4a66d73c8db84d8018ea0d372e332145336cd9b38466ca74ff",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -211,7 +244,7 @@
   "ThumbingTopic6D1C97CE": {
    "Type": "AWS::SNS::Topic",
    "Properties": {
-    "TopicName": "crudduer-assets"
+    "TopicName": "7lawa911-assets"
    },
    "Metadata": {
     "aws:cdk:path": "ThumbingServerlessCdkStack/ThumbingTopic/Resource"
@@ -364,7 +397,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQSw+CMBCEf4v3sj5IDFc18UzEOyllNSu0JWyrMQ3/XQrxdZpvJpNO2w1kG1gt5IMTVTdJSxWEwknViDEqA6ew96pBt5eMopW6qiWEw8Xk2GtiJmvE0RvlIozxmwdBUkM42RZjPGluW1LPaGcaBKelZEbHsIsi2DCEs+1IxdYMha9Y9dS9F/78VPme+2OHYdpFtr5XKD4wDY0PvJK5xsbBmprmGxtbI9x4eV9nsN6On3JjoqT3xpFGOM36AmmzgKQwAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQSw/CIBCEf4t3ur4S41VNPDfq3VC6mrUtmC5oDOG/C8Xnab4dJszCDJYzmIzknQtVN0VLFfi9laoR0Tp6noNfO9WgFZuTflGWtWQMopVdVUvw8bTEviNmMlpsnVY2QbTfHATJDvzOtJjsQUvTknqkMVMQPD9KZrQMqySCNYM/mCuplMqwdxWrnq7vhr95iHzv/RlDGHqRjesVig8MRfHNZ9LnlNgYXVPeWJsa4cLj23QJ00X8pwsTFb3TljqEXdYnkfal6kMBAAA="
    },
    "Metadata": {
     "aws:cdk:path": "ThumbingServerlessCdkStack/CDKMetadata/Default"
