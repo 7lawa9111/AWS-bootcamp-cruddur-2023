@@ -15,10 +15,10 @@
 
 For the messaging part, we will implement a single table data modelling using Dynamo DB. Below you will see the pattern for CRUDDUR
 
-1- Pattern A: Shows the messages. Users can see the list of the messages that belong to a message group.
-2- Pattern B: Shows the message group conversation with a specific user.
-3- Pattern C: Create a new message in a new message group.
-4- Pattern D: Create a new message in an exisintg group.
+1* Pattern A: Shows the messages. Users can see the list of the messages that belong to a message group.
+2* Pattern B: Shows the message group conversation with a specific user.
+3* Pattern C: Create a new message in a new message group.
+4* Pattern D: Create a new message in an exisintg group.
 
 ![message pattern](https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/c6d91853-dd8d-4c00-a495-99e03e00210e)
 
