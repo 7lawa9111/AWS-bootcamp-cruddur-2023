@@ -8,7 +8,6 @@ import ActivityFeed from '../components/ActivityFeed';
 import ActivityForm from '../components/ActivityForm';
 import {checkAuth, getAccessToken} from '../lib/CheckAuth';
 import ProfileHeading from '../components/ProfileHeading';
-import EditProfileButton from '../components/EditProfileButton'
 import ProfileForm from '../components/ProfileForm'
 
 export default function UserFeedPage() {
