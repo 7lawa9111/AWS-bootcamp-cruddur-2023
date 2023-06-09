@@ -20,7 +20,7 @@ bin/flask/health-check
 
 ### Images
 
-#### backend-flask
+#### backend-flask 
 <img width="1129" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/f9b231d3-e8b2-4411-a7a2-46694308753e">
 
 #### frontend-react-js
