@@ -56,6 +56,11 @@ bin/flask/health-check
 
 <img width="1110" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/e4039f05-c094-44bc-992c-b7154939d510">
 
+### Enable Container Insights
+
+<img width="1077" alt="Screenshot 2023-06-09 at 10 20 14 AM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/b552dd2e-e416-4967-8ae7-fff16ffad555">
+
+
 
 
 ### Implementation of Route53
