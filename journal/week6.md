@@ -38,9 +38,24 @@ bin/flask/health-check
 
 <img width="1068" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/bf5e9dfe-2649-4084-afc2-6fb773df2ea7">
 
+### Services
+
+<img width="1039" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/59603f4d-b24b-4fd7-a542-54d2bf9246a8">
+#### Services logs
+
+<img width="1048" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/e6cc805f-fc9d-4a89-9143-b79958248867">
+
+
 ### load balancer
 
 <img width="1135" alt="Screenshot 2023-06-08 at 11 02 16 PM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/600e201d-d824-4109-8f5b-023dd851099c">
+
+#### Listeners
+
+<img width="1109" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/feb40eb1-86e4-4609-ba1d-e0d086202e58">
+
+<img width="1110" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/e4039f05-c094-44bc-992c-b7154939d510">
+
 
 
 ### Implementation of Route53
@@ -48,5 +63,9 @@ bin/flask/health-check
 #### Hosted zone
 
 <img width="1103" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/cc9c6621-c416-43e5-96bc-1f7ad62dfd4c">
+
+### Records
+
+<img width="646" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/0cab3cee-f1d2-43e7-ab37-9058fb1e80d5">
 
 
