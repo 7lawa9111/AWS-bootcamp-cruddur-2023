@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
+from lib.db import db
 tracer = trace.get_tracer("user.activities")
 
 class UserActivities:
@@ -23,4 +24,3 @@ class UserActivities:
           model['data'] = results
         span.set_attribute("app.result_length", len(results))
         return model
-
