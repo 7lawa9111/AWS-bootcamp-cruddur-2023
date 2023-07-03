@@ -86,7 +86,7 @@ adf6e8027509: Pull complete
 a68430a46d9d: Pull complete
 433875ea4139: Pull complete
 Digest: sha256:7857e9a198fc4b06818b0e064c13b21485b72c7fdb1f51d3b13c9854ca2fcfa5
-Status: Downloaded newer image for 470836252788.dkr.ecr.us-east-1.amazonaws.com/cruddur-python:3.10-slim-buster
+Status: Downloaded newer image for 47xxxxxx88.dkr.ecr.us-east-1.amazonaws.com/cruddur-python:3.10-slim-buster
  ---> 6f74f1480ab7
 Step 2/7 : WORKDIR /backend-flask
  ---> Running in 9f6f075f5969
