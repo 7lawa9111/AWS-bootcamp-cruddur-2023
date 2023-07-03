@@ -62,7 +62,7 @@ DEPRECATED: The legacy builder is deprecated and will be removed in a future rel
 
 Sending build context to Docker daemon  82.94kB
 
-Step 1/7 : FROM 470836252788.dkr.ecr.us-east-1.amazonaws.com/cruddur-python:3.10-slim-buster
+Step 1/7 : FROM 47xxxxxxx88.dkr.ecr.us-east-1.amazonaws.com/cruddur-python:3.10-slim-buster
 3.10-slim-buster: Pulling from cruddur-python
 9fbefa337077: Pulling fs layer
 a25702e0699e: Pulling fs layer
