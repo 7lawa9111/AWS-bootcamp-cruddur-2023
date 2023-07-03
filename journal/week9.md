@@ -259,7 +259,7 @@ Build completed on Mon Jul 3 18:11:35 UTC 2023
 Pushing the Docker image..
 
 [Container] 2023/07/03 18:11:35 Running command docker push $IMAGE_URL/$REPO_NAME
-The push refers to repository [470836252788.dkr.ecr.us-east-1.amazonaws.com/backend-flask]
+The push refers to repository [47xxxxxx88.dkr.ecr.us-east-1.amazonaws.com/backend-flask]
 710d02d49795: Preparing
 69dbf9c7bf64: Preparing
 7c5b563dfc05: Preparing
