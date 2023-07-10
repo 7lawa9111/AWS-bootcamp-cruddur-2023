@@ -308,6 +308,8 @@ latest: digest: sha256:a13df5ef5fc94e4628bea0c388a8fa0d4616a4bdb53bc4021cc1c9d3c
 
 
 
+## Backend fargate codepipeline:
+
 <img width="1091" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/bf328e90-617b-4c1d-be6f-577c8b0ac072">
 
 
