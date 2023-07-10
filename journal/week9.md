@@ -1,6 +1,9 @@
 # Week 9 — CI/CD with CodePipeline, CodeBuild and CodeDeploy
 
 
+In this implementation, our goal is to automate the code deployment process instead of relying on manual steps. To achieve this, we will utilize CodePipeline and CodeBuild services. Once the code is merged from the main branch to the prod branch, the pipeline will automatically trigger the deployment process.
+
+
 <img width="1091" alt="Screenshot 2023-07-03 at 10 12 18 PM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/cd313bed-41da-468c-9393-c8c493f3e9ca">
 
 
