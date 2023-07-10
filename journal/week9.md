@@ -15,6 +15,10 @@ In this implementation, our goal is to automate the code deployment process inst
 
 
 
+
+
+
+## Successfull pipeline logs:
 ```
 
 [Container] 2023/07/03 18:10:56 Waiting for agent ping
@@ -301,6 +305,7 @@ latest: digest: sha256:a13df5ef5fc94e4628bea0c388a8fa0d4616a4bdb53bc4021cc1c9d3c
 [Container] 2023/07/03 18:11:41 Phase context status code:  Message: 
 
 ```
+
 
 
 <img width="1091" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/bf328e90-617b-4c1d-be6f-577c8b0ac072">
