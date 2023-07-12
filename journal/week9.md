@@ -1,6 +1,11 @@
 # Week 9 — CI/CD with CodePipeline, CodeBuild and CodeDeploy
 
 
+In this implementation, our goal is to automate the code deployment process instead of relying on manual steps. To achieve this, we will utilize CodePipeline and CodeBuild services. Once the code is merged from the main branch to the prod branch, the pipeline will automatically trigger the deployment process.
+
+## CodeBuild Project:
+
+
 <img width="1091" alt="Screenshot 2023-07-03 at 10 12 18 PM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/cd313bed-41da-468c-9393-c8c493f3e9ca">
 
 
@@ -10,6 +15,10 @@
 
 
 
+
+
+
+## Successfull pipeline logs:
 ```
 
 [Container] 2023/07/03 18:10:56 Waiting for agent ping
@@ -297,6 +306,9 @@ latest: digest: sha256:a13df5ef5fc94e4628bea0c388a8fa0d4616a4bdb53bc4021cc1c9d3c
 
 ```
 
+
+
+## Backend fargate codepipeline:
 
 <img width="1091" alt="image" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/bf328e90-617b-4c1d-be6f-577c8b0ac072">
 
