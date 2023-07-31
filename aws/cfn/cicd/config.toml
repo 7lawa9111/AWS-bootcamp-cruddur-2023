@@ -1,0 +1,10 @@
+[deploy]
+bucket = 'cfn-artifacts-911'
+region = 'us-east-1'
+stack_name = 'CrdCicd'
+
+[parameters]
+ClusterStack = 'CrdCluster'
+ServiceStack = 'CrdSrvBackendFlask'
+GitHubBranch = 'prod'
+GithubRepo = 'aws-bootcamp-cruddur-2023'

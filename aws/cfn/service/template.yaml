@@ -272,8 +272,14 @@ Resources:
         - "arn:aws:iam::aws:policy/CloudWatchFullAccess"
         - "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
 
+#Outputs:
+#  ServiceSecurityGroupId:
+#    Value: !GetAtt  ServiceSG.GroupId
+#    Export:
+#      Name: !Sub "${AWS::StackName}ServiceSecurityGroupId"
+
 Outputs:
-  ServiceSecurityGroupId:
-    Value: !GetAtt  ServiceSG.GroupId
+  ServiceName:
+    Value: !GetAtt  FargateService.Name
     Export:
-      Name: !Sub "${AWS::StackName}ServiceSecurityGroupId"
+      Name: !Sub "${AWS::StackName}ServiceName"
