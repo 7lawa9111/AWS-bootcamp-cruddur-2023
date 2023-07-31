@@ -57,3 +57,9 @@
 <img width="1044" alt="Screenshot 2023-07-31 at 9 54 34 AM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/dfac2dbc-3f26-472a-b995-8fcdf5cb73fc">
 
 
+
+### CFN Frontend service POC:
+
+<img width="1153" alt="Screenshot 2023-07-31 at 5 44 47 PM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/467ca737-25c0-4934-8a9f-3d364a7bf43c">
+
+<img width="1123" alt="Screenshot 2023-07-31 at 5 45 38 PM" src="https://github.com/7lawa9111/aws-bootcamp-cruddur-2023/assets/110344576/19848a2a-f0ec-421a-9df7-b85b19215364">
